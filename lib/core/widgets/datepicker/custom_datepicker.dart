@@ -22,7 +22,8 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     return Padding(
       padding: context.lowEdgeInsets,
       child: TextButton(
-        style: ButtonStyles.instance.lowRoundedStyle(context),
+        style: ButtonStyles(context)
+            .roundedStyle(borderRadius: context.lowCircular),
         onPressed: () => _selectDate(context, widget.buttonText, (a) {}),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,

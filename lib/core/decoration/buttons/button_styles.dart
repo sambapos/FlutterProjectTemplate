@@ -3,21 +3,19 @@ import 'package:flutter/material.dart';
 import '../../core_shelf.dart';
 
 class ButtonStyles {
-  static final ButtonStyles _instance = ButtonStyles();
-  static ButtonStyles get instance => _instance;
+  const ButtonStyles(this.context);
+  final BuildContext context;
 
-  ButtonStyle roundedStyle(
-    BuildContext context, {
+  ButtonStyle roundedStyle({
     Color? backgroundColor,
     Color? borderColor,
     BorderRadius? borderRadius,
     double? borderWidth,
   }) {
     return ButtonStyle(
-      fixedSize:  MaterialStateProperty.all(Size.fromHeight(context.height*6)),
-      backgroundColor:
-          MaterialStateProperty.all(backgroundColor ?? context.canvasColor),
-      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+      fixedSize: _all(Size.fromHeight(context.height * 6)),
+      backgroundColor: _all(backgroundColor ?? context.canvasColor),
+      shape: _all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
           borderRadius: borderRadius ?? context.highCircular,
           side: BorderSide(
@@ -29,22 +27,6 @@ class ButtonStyles {
     );
   }
 
-  ButtonStyle lowRoundedStyle(
-    BuildContext context, {
-    Color? backgroundColor,
-    Color? borderColor,
-    double? width,
-  }) {
-    return ButtonStyle(
-      backgroundColor:
-          MaterialStateProperty.all(backgroundColor ?? context.canvasColor),
-      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-        RoundedRectangleBorder(
-          borderRadius: context.lowCircular,
-          side: BorderSide(
-              color: borderColor ?? context.primaryColor, width: width ?? 2.0),
-        ),
-      ),
-    );
-  }
+  MaterialStateProperty<T> _all<T>(T value) =>
+      MaterialStateProperty.all<T>(value);
 }

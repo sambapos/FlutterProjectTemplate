@@ -27,8 +27,7 @@ class RoundedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      style: ButtonStyles.instance.roundedStyle(
-        context,
+      style: ButtonStyles(context).roundedStyle(
         borderWidth: borderWidth,
         backgroundColor: backgroundColor,
         borderColor: borderColor,
